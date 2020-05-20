@@ -1,6 +1,6 @@
 const utils = require('./utils');
 
-function resolve(httpRequestAgent, events) {
+async function resolve(httpRequestAgent, events) {
     // type, name, options.url
     if(httpRequestAgent.options.url){
         const url = utils.interpolateString(httpRequestAgent.options.url, events);

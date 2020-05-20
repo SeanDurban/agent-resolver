@@ -10,12 +10,12 @@ function jsonArgParser() {
     return JSON.parse(fs.readFileSync(process.argv[2]));
 }
 
-function resolveAgents(agents) {
+async function resolveAgents(agents) {
     let events = {};
 
-    agents.forEach((agent) => {
+    agents.forEach(async (agent) => {
         if(agent.type === httpReqAgentType) {
-            httpRequestAgent.resolve(agent, events);
+            await httpRequestAgent.resolve(agent, events);
         }
         else if (agent.type === printAgentType) {
             printAgent.resolve(agent, events);
