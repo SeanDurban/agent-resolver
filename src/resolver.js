@@ -1,5 +1,6 @@
 const fs = require('fs');
 const printAgent = require('./agents/printAgent');
+const httpRequestAgent = require('./agents/httpRequestAgent');
 const httpReqAgentType = 'HTTPRequestAgent';
 const printAgentType = 'PrintAgent';
 
@@ -14,7 +15,7 @@ function resolveAgents(agents) {
 
     agents.forEach((agent) => {
         if(agent.type === httpReqAgentType) {
-            console.log("http agent");
+            httpRequestAgent.resolve(agent, events);
         }
         else if (agent.type === printAgentType) {
             printAgent.resolve(agent, events);
