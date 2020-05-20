@@ -7,17 +7,19 @@ const noBraces = 2;
 // Returns new string with values replaced (if exists, otherwise empty string)
 function interpolateString(string, data) {
     let matches = string.match(regex);
-    matches.forEach((match) => {
-        let stringReference = match.substring(noBraces, match.length - noBraces);
+    if(matches) {
+        matches.forEach((match) => {
+            let stringReference = match.substring(noBraces, match.length - noBraces);
 
-        let dataValue = getNestedProperty(data, stringReference);
+            let dataValue = getNestedProperty(data, stringReference);
 
-        // Should objects be parsed? eg if "location" should it be [object Object] or parsed object or ''
-        let newValue = dataValue ? dataValue : '';
+            // Should objects be parsed? eg if "location" should it be [object Object] or parsed object or ''
+            let newValue = dataValue ? dataValue : '';
 
-        // (need to be careful about race conditions on the string here?)
-        string = string.replace(match, newValue)
-    });
+            // (need to be careful about race conditions on the string here?)
+            string = string.replace(match, newValue)
+        });
+    }
     return string;
 }
 
