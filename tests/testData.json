@@ -12,5 +12,19 @@
             }
         }, 
         "validated" : true
+    },
+     "testPrintAgent" : {
+        "type": "PrintAgent",
+        "name": "print",
+        "options": {
+            "message": "Is this a test? {{validated}}"
         }
+    },
+    "testHTTPRequestAgent": {
+        "type": "HTTPRequestAgent",
+        "name": "sunset",
+        "options": {
+            "url": "https://api.sunrise-sunset.org/json?lat={{location.latitude}}&lng={{location.longitude}}"
+        }
+    }
 }

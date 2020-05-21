@@ -14,5 +14,8 @@
   "dependencies": {
     "async": "^3.2.0",
     "axios": "^0.19.2"
+  },
+  "devDependencies": {
+    "jest-mock-console": "^1.0.0"
   }
 }
