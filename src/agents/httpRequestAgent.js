@@ -2,7 +2,7 @@ const utils = require('./utils');
 const axios = require('axios');
 
 async function resolve(httpRequestAgent, events) {
-    if(httpRequestAgent.options.url && typeof httpRequestAgent.options.url == "string"){
+    if(validParameters(httpRequestAgent)) {
         const url = utils.interpolateString(httpRequestAgent.options.url, events);
 
         try {
@@ -20,5 +20,12 @@ async function resolve(httpRequestAgent, events) {
         console.error("Invalid HttpAgent format");
     }
 }
+
+function validParameters(httpRequestAgent) {
+    if(httpRequestAgent && httpRequestAgent.options && httpRequestAgent.options.url && typeof httpRequestAgent.options.url == "string") {
+        return true;
+    }
+    return false;
+} 
 
 module.exports = {resolve};
