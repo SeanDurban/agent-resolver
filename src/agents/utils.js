@@ -29,7 +29,8 @@ function interpolateString(string, data) {
 function getNestedProperty(object, path) {
     return path
         .split('.')
-        .reduce((object, property) => object[property], object);
+        .reduce((object, property) => 
+            object == null ? null : object[property], object);
 }
 
 module.exports = {interpolateString};
