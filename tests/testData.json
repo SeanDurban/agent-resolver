@@ -22,9 +22,9 @@
     },
     "testHTTPRequestAgent": {
         "type": "HTTPRequestAgent",
-        "name": "sunset",
+        "name": "test",
         "options": {
-            "url": "https://api.sunrise-sunset.org/json?lat={{location.latitude}}&lng={{location.longitude}}"
+            "url": "http://testing.com"
         }
     }
 }
