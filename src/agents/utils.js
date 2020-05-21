@@ -4,8 +4,11 @@ const noBraces = 2;
 
 // Replaces hardcoded objects with relevant data in given string
 // expects {{object.property}} format
-// Returns new string with values replaced (if exists, otherwise empty string)
+// Returns new string with values replaced (if exists in data, otherwise empty string)
 function interpolateString(string, data) {
+    if(string == null || typeof string != "string"){
+        return "";
+    }
     let matches = string.match(regex);
     if(matches) {
         matches.forEach((match) => {
@@ -27,10 +30,13 @@ function interpolateString(string, data) {
 // eg) "location.city" would be obj["location"]["city"]
 // This function uses the reduce function with the path string to step into given object
 function getNestedProperty(object, path) {
+    if(object == null || path == null || typeof path != "string") {
+        return null;
+    }
     return path
         .split('.')
         .reduce((object, property) => 
             object == null ? null : object[property], object);
 }
 
-module.exports = {interpolateString};
+module.exports = {interpolateString, getNestedProperty};
