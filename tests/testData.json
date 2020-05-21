@@ -1,0 +1,16 @@
+{
+    "testData" : {
+        "location" : {
+            "state" : "OR",
+            "county": "Clarke", 
+            "stats": {
+                "pop": 100000, 
+                "capital": {
+                    "name":"Salem", 
+                    "pop": 1000
+                }
+            }
+        }, 
+        "validated" : true
+        }
+}
