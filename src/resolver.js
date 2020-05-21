@@ -1,4 +1,5 @@
 const fs = require('fs');
+const async = require('async');
 const printAgent = require('./agents/printAgent');
 const httpRequestAgent = require('./agents/httpRequestAgent');
 const httpReqAgentType = 'HTTPRequestAgent';
@@ -12,16 +13,16 @@ function jsonArgParser() {
 
 async function resolveAgents(agents) {
     let events = {};
-
-    agents.forEach(async (agent) => {
+    // Ensures agents are executed sequentially
+    async.eachSeries(agents, async (agent) => {
         if(agent.type === httpReqAgentType) {
             await httpRequestAgent.resolve(agent, events);
         }
         else if (agent.type === printAgentType) {
-            printAgent.resolve(agent, events);
+            await printAgent.resolve(agent, events);
         }
         else {
-            console.log("Unsupported type : " + agent.type);
+            console.error("Unsupported agent type : " + agent.type);
         }
     });
 }
