@@ -10,5 +10,9 @@
     "type": "git",
     "url": "https://github.com/seandurban/agent-resolver"
   },
-  "author": "Sean Durban"
+  "author": "Sean Durban",
+  "dependencies": {
+    "async": "^3.2.0",
+    "axios": "^0.19.2"
+  }
 }

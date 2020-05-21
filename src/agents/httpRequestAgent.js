@@ -1,14 +1,15 @@
 const utils = require('./utils');
+const axios = require('axios');
 
 async function resolve(httpRequestAgent, events) {
-    // type, name, options.url
     if(httpRequestAgent.options.url){
         const url = utils.interpolateString(httpRequestAgent.options.url, events);
-        //make http request
 
-        //Set events to result
-        let requestResult = {}
-        events[httpRequestAgent.name] = requestResult;
+        let response = await axios.get(url);
+        events[httpRequestAgent.name] = response.data;
+    }
+    else {
+        console.error("Invalid HttpAgent format");
     }
 }
 
