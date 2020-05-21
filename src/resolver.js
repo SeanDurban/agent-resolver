@@ -5,11 +5,9 @@ const httpRequestAgent = require('./agents/httpRequestAgent');
 const httpReqAgentType = 'HTTPRequestAgent';
 const printAgentType = 'PrintAgent';
 
-// example 'node resolver.js /path/to/jsonfile.json'
-function jsonArgParser() {
-    //argv[2] is path to json file
+function jsonArgParser(path) {
     try {
-        return JSON.parse(fs.readFileSync(process.argv[2]));
+        return JSON.parse(fs.readFileSync(path));
     }
     catch(error) {
         console.error("Invalid JSON input");
@@ -33,5 +31,6 @@ async function resolveAgents(agents) {
     });
 }
 
-let agents = jsonArgParser().agents;
+// example usage 'node resolver.js /path/to/jsonfile.json'
+let agents = jsonArgParser(process.argv[2]).agents;
 resolveAgents(agents);
