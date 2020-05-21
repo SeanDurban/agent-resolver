@@ -1,5 +1,5 @@
 
-const regex = /{{[A-Z, a-z]+(\.[A-Z, a-z]+)*}}/g;
+const regex = /{{[A-Z, a-z,-,_]+(\.[A-Z, a-z,_,-]+)*}}/g;
 const noBraces = 2;
 
 // Replaces hardcoded objects with relevant data in given string
