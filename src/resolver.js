@@ -34,8 +34,4 @@ async function resolveAgents(agents) {
     });
 }
 
-// example usage 'node resolver.js /path/to/jsonfile.json'
-// let agents = jsonFileParser(process.argv[2]).agents;
-// resolveAgents(agents);
-
 module.exports = {jsonFileParser, resolveAgents};
