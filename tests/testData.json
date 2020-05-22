@@ -26,5 +26,75 @@
         "options": {
             "url": "http://testing.com"
         }
-    }
+    },
+    "unsupportedAgents" : [
+        {
+            "type": "InvalidAgent",
+            "name": "invalid",
+            "options": {
+            }
+        }
+    ],
+    "testAgents" : [
+        {
+            "type": "HTTPRequestAgent",
+            "name": "http0",
+            "options": {
+              "url": "http://info.com"
+            }
+          },
+          {
+            "type": "HTTPRequestAgent",
+            "name": "http1",
+            "options": {
+              "url": "http://example.com"
+            }
+          },
+          {
+            "type": "PrintAgent",
+            "name": "print0",
+            "options": {
+              "message": "{{http0.status}} {{http1.status}}"
+            },
+            "expectedMessage": "success0 success1"
+          }
+    ],
+    "testAgents2" : [
+      {
+        "type": "HTTPRequestAgent",
+        "name": "http0",
+        "options": {
+          "url": "http://example.com"
+        }
+      },
+      {
+          "type": "HTTPRequestAgent",
+          "name": "httpDup",
+          "options": {
+            "url": "http://info.com"
+          }
+        },
+        {
+          "type": "HTTPRequestAgent",
+          "name": "httpDup",
+          "options": {
+            "url": "http://example.com"
+          }
+        },
+        {
+          "type": "PrintAgent",
+          "name": "print0",
+          "options": {
+            "message": "{{http0.status}} {{httpDup.status}}"
+          },
+          "expectedMessage": "delayed-res delayed-res"
+        },
+        {
+          "type": "HTTPRequestAgent",
+          "name": "httpDup",
+          "options": {
+            "url": "http://test.com"
+          }
+        }
+  ]
 }
