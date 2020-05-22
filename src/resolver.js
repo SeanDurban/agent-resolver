@@ -5,7 +5,7 @@ const httpRequestAgent = require('./agents/httpRequestAgent');
 const httpReqAgentType = 'HTTPRequestAgent';
 const printAgentType = 'PrintAgent';
 
-function jsonArgParser(path) {
+function jsonFileParser(path) {
     try {
         return JSON.parse(fs.readFileSync(path));
     }
@@ -16,9 +16,12 @@ function jsonArgParser(path) {
 }
 
 async function resolveAgents(agents) {
+    if(!agents || agents.length == 0) {
+        console.error("Invalid agents");
+    } 
     let events = {};
     // Ensures agents are executed sequentially
-    async.eachSeries(agents, async (agent) => {
+    await async.eachSeries(agents, async (agent) => {
         if(agent.type === httpReqAgentType) {
             await httpRequestAgent.resolve(agent, events);
         }
@@ -32,5 +35,7 @@ async function resolveAgents(agents) {
 }
 
 // example usage 'node resolver.js /path/to/jsonfile.json'
-let agents = jsonArgParser(process.argv[2]).agents;
-resolveAgents(agents);
+// let agents = jsonFileParser(process.argv[2]).agents;
+// resolveAgents(agents);
+
+module.exports = {jsonFileParser, resolveAgents};
