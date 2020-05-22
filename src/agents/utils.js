@@ -1,9 +1,9 @@
 
-const regex = /{{[A-Z, a-z,-,_]+(\.[A-Z, a-z,_,-]+)*}}/g;
+const regex = /{{[A-Z, a-z,0-9,\-,\_,\~,\.]+(\.[A-Z, a-z,0-9,\-,\_,\~,\.],+)*}}/g;
 const noBraces = 2;
 
 // Replaces hardcoded objects with relevant data in given string
-// expects {{object.property}} format
+// expects {{object.property}} format that matches above regex
 // Returns new string with values replaced (if exists in data, otherwise empty string)
 function interpolateString(string, data) {
     if(string == null || typeof string != "string"){
