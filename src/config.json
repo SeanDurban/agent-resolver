@@ -1,0 +1,5 @@
+{
+    "noBraces" : 2,
+    "HTTPRequestAgentName" : "HTTPRequestAgent",
+    "PrintAgentName" : "PrintAgent"
+}

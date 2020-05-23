@@ -1,8 +1,9 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-param-reassign */
+const config = require('../config.json');
 
+// Basic regex used to find {{data}} instances in strings for interpolation
 const regex = /{{[A-Z, a-z, 0-9, \-, _, ~, .]+(\.[A-Z, a-z, 0-9, \-, _, ~, .],+)*}}/g;
-const noBraces = 2;
 
 // No trivial way to generically access nested property of js object with a string
 // eg) "location.city" would be obj["location"]["city"]
@@ -26,14 +27,11 @@ function interpolateString(string, data) {
   const matches = string.match(regex);
   if (matches) {
     matches.forEach((match) => {
-      const stringReference = match.substring(noBraces, match.length - noBraces);
-
+      const stringReference = match.substring(config.noBraces, match.length - config.noBraces);
       const dataValue = getNestedProperty(data, stringReference);
-
-      // Should objects be parsed? eg if "location" should it be [object Object] or parsed object
+      // Assumed objects are not parsed. eg) if "location" should it be [object Object]
       const newValue = dataValue || '';
 
-      // (need to be careful about race conditions on the string here?)
       string = string.replace(match, newValue);
     });
   }

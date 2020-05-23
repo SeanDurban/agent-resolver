@@ -6,13 +6,13 @@ function validParameters(printAgentDetails) {
         && typeof printAgentDetails.options.message === 'string') {
     return true;
   }
-
   return false;
 }
 
-async function resolve(printAgentDetails, data) {
-  if (validParameters(printAgentDetails)) {
-    const output = utils.interpolateString(printAgentDetails.options.message, data);
+// Resolves the print agent with given events
+async function resolve(printAgent, events) {
+  if (validParameters(printAgent)) {
+    const output = utils.interpolateString(printAgent.options.message, events);
     console.log(output);
   } else {
     console.error('Invalid PrintAgent format');

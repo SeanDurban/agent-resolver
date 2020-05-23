@@ -9,17 +9,18 @@ function validParameters(httpRequestAgent) {
   return false;
 }
 
+// Resolves httpRequestAgent with given events
 async function resolve(httpRequestAgent, events) {
   if (validParameters(httpRequestAgent)) {
     const url = utils.interpolateString(httpRequestAgent.options.url, events);
 
     try {
+      // axios.get returns json response
       const response = await axios.get(url);
       events[httpRequestAgent.name] = response.data;
     } catch (error) {
       const agentName = httpRequestAgent.name ? httpRequestAgent.name : '';
-      console.error(`HttpRequestAgent (${agentName}) failed`);
-      console.error(error);
+      console.error(`HttpRequestAgent (${agentName}) failed \n`, error);
       process.exit();
     }
   } else {
