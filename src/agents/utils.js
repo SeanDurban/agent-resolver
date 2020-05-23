@@ -3,7 +3,8 @@
 const config = require('../config.json');
 
 // Basic regex used to find {{data}} instances in strings for interpolation
-const regex = /{{[A-Z, a-z, 0-9, \-, _, ~, .]+(\.[A-Z, a-z, 0-9, \-, _, ~, .],+)*}}/g;
+// Standard js dot notation
+const regex = /{{\w+(\.\w+)*}}/g;
 
 // No trivial way to generically access nested property of js object with a string
 // eg) "location.city" would be obj["location"]["city"]

@@ -41,7 +41,7 @@ describe('interpolateString unit tests', () => {
 
   test('Successfully matches to all valid url characters', () => {
     // assuming valid - a-z, A-Z, 0-9, underscore, dash, ~, fullstop
-    expect(utils.interpolateString('state: {{location.S-t_a~t.e}}.', testData))
+    expect(utils.interpolateString('state: {{location.Stat_e0}}.', testData))
       .toBe('state: .');
   });
 
