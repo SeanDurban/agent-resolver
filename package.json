@@ -4,6 +4,7 @@
   "description": "",
   "main": "/src/resolver.js",
   "scripts": {
+    "start" : "node app.js",
     "test": "jest"
   },
   "repository": {
