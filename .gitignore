@@ -10,3 +10,6 @@ jspm_packages/
 
 # Optional eslint cache
 .eslintcache
+
+# VS Code setup
+.vscode
