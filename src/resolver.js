@@ -2,6 +2,7 @@ const fs = require('fs');
 const async = require('async');
 const printAgent = require('./agents/printAgent');
 const httpRequestAgent = require('./agents/httpRequestAgent');
+const triggerAgent = require('./agents/triggerAgent');
 const config = require('./config.json');
 
 function jsonFileParser(path) {
@@ -26,6 +27,8 @@ async function resolveAgents(agents) {
       await httpRequestAgent.resolve(agent, events);
     } else if (agent.type === config.PrintAgentName) {
       await printAgent.resolve(agent, events);
+    } else if (agent.type === config.TriggerAgentName) {
+      triggerAgent.resolve(agent, events);
     } else {
       console.error(`Unsupported agent type : ${agent.type}`);
     }
